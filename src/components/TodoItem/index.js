@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import './index.css'
 
 class TodoItem extends Component {
@@ -8,24 +8,24 @@ class TodoItem extends Component {
   }
 
   handleEdit = () => {
-    const {todoDetails} = this.props
-    this.setState({editing: true, updatedTitle: todoDetails.title})
+    const { todoDetails } = this.props
+    this.setState({ editing: true, updatedTitle: todoDetails.title })
   }
 
   handleSave = () => {
-    // const {todoDetails} = this.props
-    // const {updatedTitle} = this.state
-    this.setState({editing: false})
-    // Call a function to save updated title (not implemented in this code)
+    const { todoDetails, editTodo } = this.props
+    const { updatedTitle } = this.state
+    editTodo(todoDetails.id, updatedTitle)
+    this.setState({ editing: false })
   }
 
   handleChange = e => {
-    this.setState({updatedTitle: e.target.value})
+    this.setState({ updatedTitle: e.target.value })
   }
 
   render() {
-    const {todoDetails, deleteTodo, toggleComplete} = this.props
-    const {editing, updatedTitle} = this.state
+    const { todoDetails, deleteTodo, toggleComplete } = this.props
+    const { editing, updatedTitle } = this.state
     return (
       <li
         className={todoDetails.completed ? 'todo-item completed' : 'todo-item'}
